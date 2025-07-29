@@ -1,0 +1,24 @@
+# Go binaries
+/bin
+/*.exe
+/*.out
+
+# Vendor directory
+/vendor/
+
+# IDE files
+/.idea/
+/.vscode/*
+/*.swp
+
+# Logs
+*.log
+
+# Coverage files
+coverage.out
+coverage.html
+
+# Stuff explicitly marked as private
+.envrc
+*.private.*
+/.private/
