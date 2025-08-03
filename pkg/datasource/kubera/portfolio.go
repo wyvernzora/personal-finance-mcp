@@ -59,10 +59,14 @@ func constructAssets(kbAssets []*kubera.AssetPosition) iter.Seq[*types.AssetPosi
 			determineAssetType(kbAsset),
 			kbAsset.AssetClass,
 			kbAsset.Value.Amount)
+		asset.Description = kbAsset.Description
 
 		asset.Annotate("liquidity", kbAsset.Liquidity)
 		asset.Annotate("asset_class", kbAsset.AssetClass)
 		asset.Annotate("investable", kbAsset.Investable)
+		if kbAsset.Note != "" {
+			asset.Annotate("note", kbAsset.Note)
+		}
 
 		assets[kbAsset.Id] = asset
 	}
@@ -103,6 +107,11 @@ func constructDebts(kbDebts []*kubera.DebtPosition) iter.Seq[*types.DebtPosition
 			kbDebt.Name,
 			kbDebt.Type,
 			kbDebt.Value.Amount)
+		debt.Description = kbDebt.Description
+		if kbDebt.Note != "" {
+			debt.Annotate("note", kbDebt.Note)
+		}
+
 		debts[kbDebt.Id] = debt
 	}
 	return seqs.Filter(maps.Values(debts), func(v *types.DebtPosition) bool { return v != nil })

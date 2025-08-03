@@ -4,9 +4,10 @@ package types
 // type, and monetary value. It also includes annotations for system metadata.
 type Position struct {
 	AnnotatedObject
-	Name  string `json:"name"`
-	Type  string `json:"type"`
-	Value Money  `json:"value"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+	Type        string `json:"type"`
+	Value       Money  `json:"value"`
 }
 
 // AssetPosition represents an asset holding, extending Position with a ticker symbol.
